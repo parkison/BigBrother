@@ -12,8 +12,8 @@
 	//Routes for Data Request
 	app.get('/getdata', routes.getdata);
 
-	app.listen("8080");
+	app.listen("4000");
 
-	console.log('Server started at http://localhost:8080');
+	console.log('Server started at http://localhost:4000');
 
 }).call(this);
