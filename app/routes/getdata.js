@@ -19,7 +19,7 @@ exports.getdata = function(req, res) {
 	consumer.on('message', function (message) {
 		dataOut = message;
 		console.log('New Message Arrived')
-		console.log(message)
+		console.log(dataOut)
 	});
 
 	res.send(dataOut)
@@ -52,5 +52,4 @@ exports.getdata = function(req, res) {
 	// else{
 	// 	res.send(newData2)
 	// }
-	console.log('Data Update')
 };
