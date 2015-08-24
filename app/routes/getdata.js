@@ -18,6 +18,8 @@ exports.getdata = function(req, res) {
 
 	consumer.on('message', function (message) {
 		dataOut = message;
+		console.log('New Message Arrived')
+		console.log(message)
 	});
 
 	res.send(dataOut)
