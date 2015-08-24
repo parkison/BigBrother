@@ -1,0 +1,32 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <title>d3 Angular Directive</title>
+    <meta name="description" content="d3 Angular Directive">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body ng-app="myApp">
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1" ng-controller="DemoCtrl">
+        <d3-bars data="d3Data" label="name" on-click="d3OnClick(item)"></d3-bars>
+        <d3-dots data="d3Data" label="name" on-click="d3OnClick(item)"></d3-dots>
+        <button ng-click="clicker()">Update</button>
+        {{macList}}
+      </div>
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/demoCtrl.js"></script>
+    <script src="scripts/directives/bars.directive.js"></script>
+    <script src="scripts/directives/dots.directive.js"></script>
+    <script src="scripts/services/getdata.service.js"></script>
+
+  </body>
+</html>
