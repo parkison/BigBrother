@@ -4,7 +4,9 @@
   "description": "mac address tracker",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "kafka-node": "^0.2.27",
+    "snappy": "^4.0.0"
   },
   "devDependencies": {},
   "scripts": {
