@@ -8,15 +8,15 @@ var dataOut = { topic: 'wifiscanoutput',
 
 exports.getdata = function(req, res) {
 
-	// var HighLevelConsumer = kafka.HighLevelConsumer
-	// var client = new kafka.Client()
-	// var consumer = new HighLevelConsumer(client,[{ topic: 'wifiscanoutput' }]);
+	var HighLevelConsumer = kafka.HighLevelConsumer
+	var client = new kafka.Client()
+	var consumer = new HighLevelConsumer(client,[{ topic: 'wifiscanoutput' }]);
 
-	// consumer.on('message', function (message) {
-	// 	dataOut = message;
-	// 	console.log('New Message Arrived')
-	// 	console.log(dataOut)
-	// });
+	consumer.on('message', function (message) {
+		dataOut = message;
+		console.log('New Message Arrived')
+		console.log(dataOut)
+	});
 
 	res.send(dataOut)
 
