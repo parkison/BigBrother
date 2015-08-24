@@ -14,7 +14,7 @@
 
           console.log('Data Update')
         });
-      }, 5000);
+      }, 1000);
 
       //OnClick Function, Bound to Directive
       $scope.d3OnClick = function(item){
