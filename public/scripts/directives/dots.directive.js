@@ -109,7 +109,7 @@
             //Transition DOM Elements
             dots.transition().duration(transDuration).ease(transType)
                 .attr("cx", function(d) { return x(label(d))+x.rangeBand()/2; })
-                .attr("r", function(d) { return value(d)*3; })
+                .attr("r", function(d) { return value(d)*8; })
                 .attr("cy", function(d) { return y(25); })
 
             text.transition().duration(transDuration).ease(transType)
