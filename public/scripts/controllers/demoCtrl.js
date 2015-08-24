@@ -7,26 +7,26 @@
       $scope.macList = [];
       var selectedItem;
 
-      //Write Second Data Set
-      // $scope.clicker = function(){
-      //   Getdata.get().$promise.then(function(newData){
-
-      //     //Update Chart and List Data
-      //     $scope.d3Data = JSON.parse(newData.value).macaddresslist;
-      //     updateList(selectedItem)
-
-      //     console.log('Data Update')
-      //   });
-      // };
-
-      setInterval(function(){ 
+      // Write Second Data Set
+      $scope.clicker = function(){
         Getdata.get().$promise.then(function(newData){
+
+          //Update Chart and List Data
           $scope.d3Data = JSON.parse(newData.value).macaddresslist;
           updateList(selectedItem)
 
           console.log('Data Update')
         });
-      }, 5000);
+      };
+
+      // setInterval(function(){ 
+      //   Getdata.get().$promise.then(function(newData){
+      //     $scope.d3Data = JSON.parse(newData.value).macaddresslist;
+      //     updateList(selectedItem)
+
+      //     console.log('Data Update')
+      //   });
+      // }, 5000);
 
       //OnClick Function, Bound to Directive
       $scope.d3OnClick = function(item){
