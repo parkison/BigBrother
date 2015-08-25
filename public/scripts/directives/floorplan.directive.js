@@ -30,8 +30,8 @@
 
           //SVG Size
           var margin = {top: 0, right:0, bottom: 0, left: 0},
-              width = 600 - margin.left - margin.right,
-              height = 600 - margin.top - margin.bottom;
+              width = 900 - margin.left - margin.right,
+              height = 900 - margin.top - margin.bottom;
 
           //Define Axis Types
           var x = d3.scale.linear()
@@ -59,7 +59,7 @@
             else if(area=="Baker"){return 7.5}
             else if(area=="Develop2"){return 38}
             else if(area=="MtHood"){return 53}
-            else if(area=="Lionel"){return 19}
+            else if(area=="Develop"){return 19}
             else{return 0}
           }
 
@@ -68,7 +68,7 @@
             else if(area=="Baker"){return 29.5}
             else if(area=="Develop2"){return 90}
             else if(area=="MtHood"){return 67}
-            else if(area=="Lionel"){return 38}
+            else if(area=="Develop"){return 38}
             else{return 0}
           }
           // define render function
