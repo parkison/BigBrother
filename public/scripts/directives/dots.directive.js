@@ -19,7 +19,7 @@
           }, true);
 
           //Define elements outside of render function
-          var chart, xAxis, yAxis, dots, text;
+          var svg, chart, xAxis, yAxis, dots, text;
 
           //Define Transition Characteristics
           var transDuration = 1000;
@@ -28,7 +28,7 @@
           //SVG Size
           var margin = {top: 20, right: 20, bottom: 30, left: 40},
               width = 1500 - margin.left - margin.right,
-              height = 300 - margin.top - margin.bottom;
+              height = 400 - margin.top - margin.bottom;
 
           //Define Axis Types
           var x = d3.scale.ordinal()
@@ -74,10 +74,11 @@
               console.log('Creating New Chart')
 
               //Create SVG and Axes
-              chart = d3.select(iElement[0]).append("svg")
+              svg = d3.select(iElement[0]).append("svg")
                   .attr("width", width + margin.left + margin.right)
                   .attr("height", height + margin.top + margin.bottom)
-                .append("g")
+
+              chart = svg.append("g")
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
               xAxis = chart.append("g")

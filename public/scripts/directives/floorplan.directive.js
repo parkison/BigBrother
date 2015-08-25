@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('myApp.directives').directive('d3Bars', [ 
+  angular.module('myApp.directives').directive('d3Floor', [ 
     function() { 
 
       return {
@@ -19,22 +19,25 @@
           }, true);
 
           //Define elements outside of render function
-          var svg, chart, xAxis, yAxis, bars;
+          var svg, chart, xAxis, yAxis, dots, text;
+
+          //Define Circle Scaling Factor
+          var scaling = 300;
 
           //Define Transition Characteristics
           var transDuration = 1000;
           var transType = "sin-in-out";
 
           //SVG Size
-          var margin = {top: 20, right: 20, bottom: 30, left: 40},
+          var margin = {top: 0, right:0, bottom: 0, left: 0},
               width = 600 - margin.left - margin.right,
-              height = 300 - margin.top - margin.bottom;
+              height = 600 - margin.top - margin.bottom;
 
           //Define Axis Types
-          var x = d3.scale.ordinal()
-              .rangeRoundBands([0, width], .1);
+          var x = d3.scale.linear()
+              .range([0, width]);
           var y = d3.scale.linear()
-              .range([height, 0]);
+              .range([0,height]);
 
           //Define Axis Scales
           var xScale = d3.svg.axis()
@@ -51,7 +54,23 @@
           var label = function(d){
             return d.name;
           }
+          var xPosition = function(area){
+            if(area=="Rainier"){return 7.5}
+            else if(area=="Baker"){return 7.5}
+            else if(area=="Develop2"){return 38}
+            else if(area=="MtHood"){return 53}
+            else if(area=="Lionel"){return 19}
+            else{return 0}
+          }
 
+          var yPosition = function(area){
+            if(area=="Rainier"){return 22}
+            else if(area=="Baker"){return 29.5}
+            else if(area=="Develop2"){return 90}
+            else if(area=="MtHood"){return 67}
+            else if(area=="Lionel"){return 38}
+            else{return 0}
+          }
           // define render function
           scope.render = function(rawData){
 
@@ -76,54 +95,46 @@
               //Create SVG and Axes
               svg = d3.select(iElement[0]).append("svg")
                   .attr("width", width + margin.left + margin.right)
-                  .attr("height", height + margin.top + margin.bottom);
+                  .attr("height", height + margin.top + margin.bottom)
 
-              
               chart = svg.append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+              chart.append("image")
+                .attr("xlink:href", "img/floorplan.png")
+                .attr("width", width)
+                .attr("height", height);
 
               xAxis = chart.append("g")
                   .attr("class", "x axis")
                   .attr("transform", "translate(0," + height + ")")
 
-              yAxis = chart.append("g")
-                  .attr("class", "y axis")
-
-              yAxis.append("text")
-                  .attr("transform", "rotate(-90)")
-                  .attr("y", 6)
-                  .attr("dy", ".71em")
-                  .style("text-anchor", "end")
-                  .text("# of Radi-ites");
             }
 
             //Define Axis Domain
-            x.domain(data.map(function(d) { return d.name; }));
-            // y.domain([0, d3.max(data, function(d) { return value(d); })]);
-            y.domain([0, 50]);
-            
-            //Draw Axes
-            xAxis.transition().duration(transDuration).ease(transType).call(xScale)
-            yAxis.transition().duration(transDuration).ease(transType).call(yScale)
+            x.domain([0,100]);
+            y.domain([0,100]);
 
             //Bind New Data Set
-            bars = chart.selectAll(".bar")
+            dots = chart.selectAll(".dot")
                 .data(data,label)
 
             //Attach Class to New Data
-            bars.enter().append("rect")
+            dots.enter().append("circle")
                 .on("click", function(d, i){return scope.onClick({item: d});})
-                .attr("class", "bar")
+                .attr("class", "dot")
+                .style('opacity', .5)
+
+            
 
             //Transition DOM Elements
-            bars.transition().duration(transDuration).ease(transType)
-                .attr("x", function(d) { return x(label(d)); })
-                .attr("width", x.rangeBand())
-                .attr("y", function(d) { return y(value(d)); })
-                .attr("height", function(d) { return height - y(value(d)); });
+            dots.transition().duration(transDuration).ease(transType)
+                .attr("cx", function(d) { return x(xPosition(label(d))); })
+                .attr("r", function(d) { return value(d)*width/scaling; })
+                .attr("cy", function(d) { return y(yPosition(label(d))); })
 
             //Remove Exiting Elemets
-            bars.exit().remove();
+            dots.exit().remove();
           };
         }
       };

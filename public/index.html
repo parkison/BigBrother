@@ -11,7 +11,7 @@
 
     <div class="row">
       <div class="col-md-6 col-md-offset-1" ng-controller="DemoCtrl">
-        <d3-dots data="d3Data" label="name" on-click="d3OnClick(item)"></d3-dots>
+        <d3-floor data="d3Data" label="name" on-click="d3OnClick(item)"></d3-floor>
         {{macList}}
       </div>
     </div>
@@ -24,6 +24,7 @@
     <script src="scripts/controllers/demoCtrl.js"></script>
     <script src="scripts/directives/bars.directive.js"></script>
     <script src="scripts/directives/dots.directive.js"></script>
+    <script src="scripts/directives/floorplan.directive.js"></script>
     <script src="scripts/services/getdata.service.js"></script>
 
   </body>
