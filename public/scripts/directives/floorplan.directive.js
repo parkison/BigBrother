@@ -64,8 +64,8 @@
           }
 
           var yPosition = function(area){
-            if(area=="Rainier"){return 22}
-            else if(area=="Baker"){return 29.5}
+            if(area=="Baker"){return 22}
+            else if(area=="Rainier"){return 29.5}
             else if(area=="Develop2"){return 90}
             else if(area=="MtHood"){return 67}
             else if(area=="Develop"){return 38}
