@@ -3,6 +3,7 @@
 
 	express = require('express');
 	var routes = require('./app/routes/getdata');
+	var test = require('./app/routes/test');
 
 	app = express();
 
@@ -10,7 +11,13 @@
 	app.use("/",express["static"](__dirname + '/public'));
 
 	//Routes for Data Request
-	app.get('/getdata', routes.getdata);
+	if(process.env.NODE_ENV=='test'){
+		console.log('Routes defined for test')
+		app.get('/getdata', test.getdata);
+	}
+	else{
+		app.get('/getdata', routes.getdata);
+	}
 
 	app.listen("4000");
 
