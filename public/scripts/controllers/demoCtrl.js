@@ -5,6 +5,8 @@
     .controller('DemoCtrl', ['$scope', 'Getdata', function($scope, Getdata){
       
       $scope.macList = [];
+      $scope.macTitle = "";
+
       var selectedItem;
 
       setInterval(function(){ 
@@ -31,9 +33,11 @@
       var updateList = function(selected){
         if(!selected){
           $scope.macList = [];
+          $scope.macTitle = "";
         }
         else{
-          $scope.macList = _.pluck(_.where($scope.d3Data, {loc: selected}),'mac');
+          $scope.macList = _.where($scope.d3Data, {loc: selected});
+          $scope.macTitle = "MAC Addresses Present";
         }
       }
 

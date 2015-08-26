@@ -9,11 +9,19 @@
   </head>
   <body ng-app="myApp">
 
-    <div class="row">
-      <div class="col-md-6 col-md-offset-1" ng-controller="DemoCtrl">
+    <div class="row" ng-controller="DemoCtrl">
+      <div class="col-md-7">
         <d3-floor data="d3Data" label="name" on-click="d3OnClick(item)"></d3-floor>
-        {{macList}}
       </div>
+      <div class="col-md-3">
+        <h3>{{macTitle}}</h3>
+        <ul>
+          <li ng-repeat="macadd in macList">
+            {{macadd.mac}}
+          </li>
+        </ul>
+      </div>
+
     </div>
 
     <script src="bower_components/angular/angular.min.js"></script>
